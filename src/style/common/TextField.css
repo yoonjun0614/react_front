@@ -1,0 +1,15 @@
+.TextBox{
+    width: 100%;
+    padding:12px;
+    outline:none;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid;
+}
+.TextBox:focus{
+    width: 100%;
+    outline:none;
+    padding:12px;
+    border:2px solid skyblue;
+    box-sizing: border-box;
+}

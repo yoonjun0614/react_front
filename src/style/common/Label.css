@@ -1,0 +1,11 @@
+.Label{
+    width: 100%;
+    color: black;
+    padding: 12px;
+}
+.LabelLogin{
+    width: 100%;
+    padding: 12px;
+    color: white;
+    border-bottom: 1px solid;
+}

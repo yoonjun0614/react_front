@@ -1,0 +1,64 @@
+.SignUp_Modal_Container{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.SignUp_Modal_Idcheck{
+    justify-content: center;
+    text-align: center;
+}
+.SignUp_Modal_Idcheck_Impossible{
+    color:red;
+    justify-content: center;
+    text-align: center;
+}
+.SignUp_Modal{
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    background-color: rgba( 255, 255, 255, 1 );
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.SignUp_Modal_check{
+    margin: 0px 0px 24px;
+    font-family: "NS bo";
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+.SignUp_Modal_dal{
+    width: 700px;
+    box-sizing: border-box;
+    padding: 30px 20px 24px;
+    border-radius: 5px;
+    font-family: "NS re";
+    font-size: 16px;
+    height: 500px;
+}
+.SignUp_Modal_height{
+    height: 30px;
+}
+.SignUp_Modal_title{
+    margin: 0px 0px 24px;
+    font-family: "NS bo";
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+}
+.SignUp_Modal_context{
+    text-align: center; 
+}
+.SignUp_Modal_bottom{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
