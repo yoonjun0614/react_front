@@ -5,14 +5,14 @@ import TextField from "../../../style/common/TextField";
 import { postSignUp } from '../../../api/signUp/signUp';
 import { getSignUpIdCheck } from '../../../api/login/login';
 
-import { SignUpMessageModal , SignUpModel} from "../../../slice/modal/ModalSlice";
+import { SignUpMessageModal , SignUpModal} from "../../../slice/modal/ModalSlice";
 import { useDispatch , useSelector} from "react-redux";
 import MassageModal from "../modal/Massage";
 import "./SignUp.css";
 
-const SignUpModal = () => {
+const SignModal = () => {
     
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();// eslint-disable-line no-unused-vars
     const [loginId, setLoginId] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -24,17 +24,12 @@ const SignUpModal = () => {
     const [impossible , setImpossible] = useState(false);
     const [idInsertFlag , setIdInsertFlag] = useState(false);
     const MeModel = useSelector((state) => state.modal.value.SignUpMessageModal);
-
+    
     useEffect(() => {
         if(idInsertFlag===true && MeModel ===false){
-            close();
-        }
-    }, [idInsertFlag , MeModel]);
-
-
-    const close = () => {
-        dispatch(SignUpModel(false));
-    }
+            dispatch(SignUpModal(false));
+        };
+    }, [idInsertFlag , MeModel]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const onSetTitle = (e) => {
         if (e.target.value.length > 15) {
@@ -50,6 +45,7 @@ const SignUpModal = () => {
         if(impossible===false){
             setMassage("아이디 중복 체크를 해주세요");
             dispatch(SignUpMessageModal(true));
+            return;
         }else if(loginId===""|| loginId===undefined){
             setMassage("아이디를 입력하세요");
             dispatch(SignUpMessageModal(true));
@@ -73,7 +69,7 @@ const SignUpModal = () => {
         }
         const idRegex = /[a-z0-9]{4,15}$/;
         if(!idRegex.test(loginId)) {
-            setMassage("아이디는 한글,영어 4자이상 15자 이하 사용 가능합니다");
+            setMassage("아이디는 영어,숫자 4자이상 15자 이하 사용 가능합니다");
             dispatch(SignUpMessageModal(true));
             return;
         }
@@ -122,7 +118,7 @@ const SignUpModal = () => {
         }
         const idRegex = /[a-z0-9]{4,15}$/;
         if(!idRegex.test(loginId)) {
-            setMassage("아이디는 한글,영어 4자이상 15자 이하 사용 가능합니다");
+            setMassage("아이디는 영어 4자이상 15자 이하 사용 가능합니다");
             dispatch(SignUpMessageModal(true));
             return;
         }
@@ -196,7 +192,7 @@ const SignUpModal = () => {
             <div className="SignUp_Modal_height"></div>
             <div className="SignUp_Modal_bottom">
                 <Button size="lg" text="가입" textColor="black" color="" cType="default" onClick={handleSignUp}></Button>
-                <Button size="lg" text="취소" textColor="black" color="" cType="default" onClick={() => dispatch(SignUpModel(false))}></Button>
+                <Button size="lg" text="취소" textColor="black" color="" cType="default" onClick={() => dispatch(SignUpModal(false))}></Button>
             </div>
             {MeModel &&
                 <div className='Massage_Modal_Container'>
@@ -208,4 +204,4 @@ const SignUpModal = () => {
         </div>
     )
 }
-export default SignUpModal;
+export default SignModal;

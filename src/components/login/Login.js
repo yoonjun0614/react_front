@@ -5,9 +5,9 @@ import Button from '../../style/common/Button';
 import { getLogin } from '../../api/login/login';
 import { useNavigate } from "react-router-dom";
 import { useSelector , useDispatch } from 'react-redux';
-import { MessageModal , SignUpModel } from '../../slice/modal/ModalSlice';
+import { MessageModal , SignUpModal , FindModel} from '../../slice/modal/ModalSlice';
 import MassageModal from './modal/Massage';
-import SignUpModal from './modal/SignUp';
+import SignModal from './modal/SignUp';
 import '../../style/common/Login.css';
 
 const Login = () => {
@@ -15,8 +15,10 @@ const Login = () => {
     const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const MModel = useSelector((state) => state.modal.value.MessageModal);
-    const SModel = useSelector((state) => state.modal.value.SignUpModel);
+    const MModal = useSelector((state) => state.modal.value.MessageModal);
+    const SModal = useSelector((state) => state.modal.value.SignUpModal);
+    const FModal = useSelector((state) => state.modal.value.FindModel);
+
     const dispatch = useDispatch();
     const [massage, setMassage]  =useState('');
 
@@ -65,25 +67,34 @@ const Login = () => {
                 <div style={{ display:'flex' }}>
                     <div style={{ width:'150px' }}><Button size='lg' text='로그인' textColor='white' onClick={handleLogin} cType='default'></Button></div>
                     <div style={{ width:'35px' }}></div>
-                    <div style={{ width:'150px' }}><Button size='lg' text='회원가입' textColor='white' cType='default' onClick={() => dispatch(SignUpModel(true))}></Button></div>
+                    <div style={{ width:'150px' }}><Button size='lg' text='회원가입' textColor='white' cType='default' onClick={() => dispatch(SignUpModal(true))}></Button></div>
                     <div style={{ width:'35px' }}></div> 
-                    <div style={{ width:'150px' }}><Button size='lg' text='회원정보찾기' textColor='white'  cType='default'></Button></div>
+                    <div style={{ width:'150px' }}><Button size='lg' text='회원정보찾기' textColor='white'  cType='default' onClick={() => dispatch(FindModel(true))}></Button></div>
                 </div>
             </div>
-            {MModel &&
+            {MModal &&
                 <div className='Massage_Modal_Container'>
                 <div className='Massage_Modal'>
                     <MassageModal type="login" title="로그인" massage={massage}/>
                 </div> 
                 </div> 
             }
-            {SModel &&
+            {SModal &&
                 <div className='SignUp_Modal_Container'>
                 <div className='SignUp_Modal'>
-                    <SignUpModal/>
+                    <SignModal/>
                 </div> 
                 </div> 
             }
+            {FModal &&
+                // <div className='Find_Modal_Container'>
+                <div  style={{color:'red'}}>
+                    111111111111111111111
+                </div> 
+                // </div> 
+            }
+
+
         </div>
     )
 }
