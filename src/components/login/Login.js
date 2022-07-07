@@ -8,6 +8,8 @@ import { useSelector , useDispatch } from 'react-redux';
 import { MessageModal , SignUpModal , FindModel} from '../../slice/modal/ModalSlice';
 import MassageModal from './modal/Massage';
 import SignModal from './modal/SignUp';
+import FindModal from './modal/Find';
+
 import '../../style/common/Login.css';
 
 const Login = () => {
@@ -42,10 +44,11 @@ const Login = () => {
         const data = {params : { "loginId": loginId , "password" :password} };
         getLogin(data)
         .then((response) => {
-            if(response.data==="로그인성공"){
-                navigate("/Counter");
+            if(response.data.message==="로그인성공"){
+                localStorage.setItem('Login', JSON.stringify(response.data));
+                navigate("/main");
             }else{
-                setMassage(response.data);
+                setMassage(response.data.message);
                 dispatch(MessageModal(true));
             }
         })
@@ -74,27 +77,25 @@ const Login = () => {
             </div>
             {MModal &&
                 <div className='Massage_Modal_Container'>
-                <div className='Massage_Modal'>
-                    <MassageModal type="login" title="로그인" massage={massage}/>
-                </div> 
+                    <div className='Massage_Modal'>
+                        <MassageModal type="login" title="로그인" massage={massage}/>
+                    </div> 
                 </div> 
             }
             {SModal &&
                 <div className='SignUp_Modal_Container'>
-                <div className='SignUp_Modal'>
-                    <SignModal/>
-                </div> 
+                    <div className='SignUp_Modal'>
+                        <SignModal/>
+                    </div> 
                 </div> 
             }
             {FModal &&
-                // <div className='Find_Modal_Container'>
-                <div  style={{color:'red'}}>
-                    111111111111111111111
+                <div className='Find_Modal_Container'>
+                <div className='Find_Modal'>
+                    <FindModal/>
                 </div> 
-                // </div> 
+                </div> 
             }
-
-
         </div>
     )
 }

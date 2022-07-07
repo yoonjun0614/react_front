@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageModal , SignUpMessageModal } from '../../../slice/modal/ModalSlice';
+import { MessageModal , SignUpMessageModal ,FindMessageModal } from '../../../slice/modal/ModalSlice';
 import { useDispatch } from 'react-redux';
 import './Massage.css';
 
@@ -22,6 +22,11 @@ const MassageModal = ({type,title,massage}) => {
             }
             {type==="SignUp" &&
                 <div className="Massage_Modal_check" onClick={() => dispatch(SignUpMessageModal(false))}>
+                    확인
+                </div>
+            }
+            {type==="Find" &&
+                <div className="Massage_Modal_check" onClick={() => dispatch(FindMessageModal(false))}>
                     확인
                 </div>
             }

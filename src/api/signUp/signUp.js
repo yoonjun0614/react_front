@@ -2,7 +2,6 @@ import { instance  } from "../index";
 
 export const postSignUp = async (data) => {
     const url = `/Sign-Up`;
-    
     const response = await instance.post(
         url,
         data,

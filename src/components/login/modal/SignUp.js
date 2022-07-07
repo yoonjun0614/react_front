@@ -73,9 +73,9 @@ const SignModal = () => {
             dispatch(SignUpMessageModal(true));
             return;
         }
-        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        const passwordRegex =  /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/;
         if(!passwordRegex.test(password)) {
-            setMassage("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요");
+            setMassage("비밀번호는 숫자+영문자 조합으로 8자리 이상 15자 이하로 입력해주세요");
             dispatch(SignUpMessageModal(true));
             return;
         }
@@ -108,8 +108,8 @@ const SignModal = () => {
                 dispatch(SignUpMessageModal(true));
             }
         })
-
     }
+    
     const handleSignUpIdCheck = (e) => {
         if(loginId===""|| loginId===undefined){
             setMassage("아이디를 입력하세요");
@@ -125,8 +125,8 @@ const SignModal = () => {
         const data = {params : { "loginId": loginId } };
         getSignUpIdCheck(data)
         .then((response) => {
-            setIdcheck(response.data);
-            if(response.data==="해당 아이디는 사용중입니다"){
+            setIdcheck(response.data.message);
+            if(response.data.message==="해당 아이디는 사용중입니다"){
                 setImpossible(false);
             }else{
                 setImpossible(true);
@@ -134,7 +134,6 @@ const SignModal = () => {
         })
     }
     
-
     return (
         <div className="SignUp_Modal_dal">
             <h3 className="SignUp_Modal_title">

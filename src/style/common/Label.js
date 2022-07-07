@@ -15,6 +15,11 @@ const Label = ({ text, type , required }) => {
                     {text}{required === true && <span style={{ height: '100%', color:'#ED5255'}}>   *</span>}
                 </div>
             }
+            {type ==='Find' &&
+                <div className="Label" >
+                    {text}{required === true && <span style={{ height: '100%', color:'#ED5255'}}>   *</span>}
+                </div>
+            }
         </div>
     )
 }
